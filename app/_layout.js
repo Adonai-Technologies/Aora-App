@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { Slot, Stack } from "expo-router";
+import React, { useEffect } from "react";
+import { SplashScreen, Stack } from "expo-router";
 import { useFonts } from "expo-font";
+
+SplashScreen.preventAutoHideAsync();
 
 const _layout = () => {
 	const [fontsLoaded, error] = useFonts({
@@ -16,6 +18,14 @@ const _layout = () => {
 		"Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
 	});
 
+	useEffect(() => {
+		if (error) throw error;
+		if (fontsLoaded) {
+			SplashScreen.hideAsync();
+		}
+	}, [fontsLoaded, error]);
+
+	if (!fontsLoaded && !error) return null;
 	return (
 		<Stack>
 			<Stack.Screen name='index' options={{ headerShown: false }} />
