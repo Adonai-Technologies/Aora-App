@@ -39,4 +39,4 @@ const FormField = ({
 	);
 };
 
-export default FormField;
+export default FormField
