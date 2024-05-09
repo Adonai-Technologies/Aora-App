@@ -9,32 +9,30 @@ import { createUser } from "../../lib/appwrite";
 
 const SignUp = () => {
 	const [form, setForm] = useState({
-		username:"",
+		username: "",
 		email: "",
 		password: "",
-  });
+	});
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const submit = async () => {
-		if(!form.username || !form.email || !form.password){
+		if (!form.username || !form.email || !form.password) {
 			Alert.alert("Error", "Please fill in all fields");
 		}
-		
 
-         setIsSubmitting(true)
+		setIsSubmitting(true);
 
-          try {
+		try {
 			const result = await createUser(form.email, form.password, form.username);
-			//  set to global state .....
-			//  navigate to home screen
-			router.replace("/home")
-		  } catch (error) {
+             setUser(result);
+			 setIsloggedIn(true);
+			router.replace("/home");
+		} catch (error) {
 			Alert.alert("Error", error.message);
-		  } finally{
-			setIsSubmitting(false)
-		  }
-
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	return (
@@ -50,15 +48,12 @@ const SignUp = () => {
 						Sign Up To VideoBible
 					</Text>
 
-
-          <FormField
+					<FormField
 						title='Username'
 						value={form.username}
 						handelChangeText={(e) => setForm({ ...form, username: e })}
 						otherStyles='mt-10'
-						
 					/>
-
 
 					<FormField
 						title='Email'
@@ -73,7 +68,7 @@ const SignUp = () => {
 						handelChangeText={(e) => setForm({ ...form, password: e })}
 						otherStyles='mt-7'
 					/>
-				
+
 					<CustomButton
 						title='Sign Up'
 						handlePress={submit}
@@ -82,7 +77,7 @@ const SignUp = () => {
 					/>
 					<View className='justify-center pt-5 flex-row gap-2'>
 						<Text className='text-lg text-gray-100 font-pregular'>
-							Have an account already? 
+							Have an account already?
 						</Text>
 						<Link
 							className='text-lg text-secondary font-psemibold'
