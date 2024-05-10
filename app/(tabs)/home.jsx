@@ -29,25 +29,25 @@ const Home = () => {
 			} finally {
 				setIsLoading(false);
 			}
-		}
+		};
 		fetchData();
 	}, []);
 
-	console.log(data)
+	console.log(data);
 
 	const [refreshing, setRefreshing] = useState(false);
 
 	const onRefresh = (async = () => {
 		setRefreshing(true);
 		//  re call videos -> if any new videos appears
-		setRefreshing(false);
+		
 	});
 
 	return (
 		<SafeAreaView className='bg-primary h-full'>
 			<FlatList
 				data={[{ id: 1 }, { id: 2 }, { id: 3 }]}
-				keyExtractor={(item) => item.$id}
+				keyExtractor={(item) => item.id}
 				renderItem={({ item }) => (
 					<Text className='text-3xl text-white'>{item.id}</Text>
 				)}

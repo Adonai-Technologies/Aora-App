@@ -3,11 +3,19 @@ import React from "react";
 
 const Trending = ({ posts }) => {
 	return (
+		// <FlatList
+		// 	data={posts}
+		// 	keyExtractor={(item) => item.$id}
+		// 	renderItem={({ item }) => (
+		//         <Text className='text-3xl text-white'>{item.id}</Text>
+		// 	)}
+		// 	horizontal
+		// />
 		<FlatList
 			data={posts}
-			keyExtractor={(item) => item.$id}
+			keyExtractor={(item) => item.id}
 			renderItem={({ item }) => (
-                <Text className='text-3xl text-white'>{item.id}</Text>
+				<Text className='text-3xl text-white'>{item.id}</Text>
 			)}
 			horizontal
 		/>
