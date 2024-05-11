@@ -12,7 +12,7 @@ import images from "../../constants/images";
 import SearchInput from "../../components/SearchInput";
 import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
-import { getAllPosts } from "../../lib/appwrite";
+import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import useAppwrite from "../../lib/useApprite";
 import VideoCard from "../../components/VideoCard";
 
@@ -20,6 +20,7 @@ import VideoCard from "../../components/VideoCard";
 const Home = () => {
 
      const {data: posts, refetch} = useAppwrite(getAllPosts)
+     const {data: latestPosts} = useAppwrite(getLatestPosts)
 
 	const [refreshing, setRefreshing] = useState(false);
 
@@ -62,7 +63,7 @@ const Home = () => {
 							<Text className='text-gray-100 text-lg mb-3 font-pregular'>
 								Latest Videos
 							</Text>
-							<Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }] ?? []} />
+							<Trending posts={[latestPosts] ?? []} />
 						</View>
 					</View>
 				)}

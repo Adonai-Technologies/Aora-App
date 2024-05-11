@@ -52,7 +52,7 @@ const VideoCard = ({
 					/>
                     <Image
                         source={icons.play}
-                        className='w-10 h-10 absolute'
+                        className='w-12 h-12 absolute'
                         resizeMode='contain'
                     />
 				</TouchableOpacity>
